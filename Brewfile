@@ -8,12 +8,18 @@ if OS.mac?
 
   brew "noti" # utility to display notifications from scripts
   brew "trash" # rm, but put in the trash rather than completely delete
+  brew "mas"
+
 
   # Applications
   cask "kitty" # a better terminal emulator
   cask "imageoptim" # a tool to optimize images
   cask "1password/tap/1password-cli"
+  cask "stats"
   cask "wezterm" # a better terminal emulator
+  mas "Coca", id: 1000808993
+  mas "ColorSlurp", id: 1287239339
+  mas "1Blocker", id: 1107421413
 
   # Aerospace
   cask "nikitabobko/tap/aerospace"
@@ -67,3 +73,20 @@ brew "z" # switch between most used directories
 brew "zoxide" # switch between most used directories
 brew "zsh" # zsh (latest)
 brew "pkgxdev/made/pkgx" # npx, but for anything
+
+# personal
+# brew "jenv"
+brew "lazydocker"
+brew "diff-so-fancy"
+brew "zplug"
+brew "fasd"
+brew "go"
+brew "kubernetes-cli"
+brew "pipenv"
+brew "kubectx"
+brew "stern"
+
+
+# tap "AdoptOpenJDK/openjdk"
+# cask "adoptopenjdk8"
+# cask "adoptopenjdk11"

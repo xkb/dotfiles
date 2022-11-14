@@ -15,6 +15,11 @@ prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $HOME/bin
 
+# SQSP
+prepend_path $HOME/squarespace/generated/bin
+prepend_path $HOME/workspace/sqsp/kubectl-plugins
+prepend_path $(pyenv root)/shims
+
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
 if [[ -d ~/code ]]; then
@@ -96,6 +101,25 @@ zfetch zsh-users/zsh-autosuggestions
 zfetch grigorii-zander/zsh-npm-scripts-autocomplete
 zfetch Aloxaf/fzf-tab
 
+# xkb
+zfetch "qoomon/zjump" zjump.plugin.zsh
+zfetch "wfxr/forgit" forgit.plugin.zsh
+zfetch "MichaelAquilina/zsh-autoswitch-virtualenv" autoswitch_virtualenv.plugin.zsh
+zfetch "MichaelAquilina/zsh-autoswitch-virtualenv" autoswitch_virtualenv.plugin.zsh
+# zfetch "wookayin/fzf-fasd" fzf-fasd.plugin.zsh
+
+# prepend_path $HOME/.jenv/bin
+# zfetch "shihyuho/zsh-jenv-lazy" jenv-lazy.plugin.zsh
+source $HOME/.sdkman/bin/sdkman-init.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+prepend_path $HOME/.rvm/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+## gcloud
+# source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+# source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
 if [[ -x "$(command -v fnm)" ]]; then
     eval "$(fnm env --use-on-cd)"
 fi
@@ -108,10 +132,13 @@ fi
 
 if [ -f $HOME/.fzf.zsh ]; then
   source $HOME/.fzf.zsh
-  export FZF_DEFAULT_COMMAND='fd --type f'
+  export FZF_DEFAULT_COMMAND='fd --hidden --follow'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_DEFAULT_OPTS="--color bg:-1,bg+:-1,fg:-1,fg+:#feffff,hl:#993f84,hl+:#d256b5,info:#676767,prompt:#676767,pointer:#676767"
 fi
+
+# add a config file for ripgrep
+export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # add color to man pages
 export MANROFFOPT='-c'
@@ -155,3 +182,37 @@ for file in "$ZDOTDIR/.zsh_prompt" "$ZDOTDIR/.zsh_aliases"; do
     fi
 done
 
+## XKB
+
+# Java 11 for V6
+export JAVA_TARGET_COMPATIBILITY_VERSION="11"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# export PATH="$PATH:$HOME/.rvm/bin"
+
+# pyenv
+# export PYENV_SHELL=zsh
+# source '/opt/homebrew/Cellar/pyenv/2.2.4-1/libexec/../completions/pyenv.zsh'
+# command pyenv rehash 2>/dev/null
+# pyenv() {
+#   local command
+#   command="${1:-}"
+#   if [ "$#" -gt 0 ]; then
+#     shift
+#   fi
+
+#   case "$command" in
+#   rehash|shell)
+#     eval "$(pyenv "sh-$command" "$@")"
+#     ;;
+#   *)
+#     command pyenv "$command" "$@"
+#     ;;
+#   esac
+# }
+
+eval "$(pyenv virtualenv-init -)"
