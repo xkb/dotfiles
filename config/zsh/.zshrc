@@ -216,3 +216,11 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # }
 
 eval "$(pyenv virtualenv-init -)"
+
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/kbaaba/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
