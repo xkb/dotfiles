@@ -31,3 +31,7 @@ typeset -aU path
 
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
+
+export ARTIFACTORY_URL="https://artifactory.squarespace.net"
+export ARTIFACTORY_USERNAME="kbaaba"
+export GRADLE_OPTS="-Dgradle.wrapperUser=$ARTIFACTORY_USERNAME -Dgradle.wrapperPassword=$ARTIFACTORY_TOKEN"
